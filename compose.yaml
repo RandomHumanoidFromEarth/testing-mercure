@@ -1,0 +1,8 @@
+services:
+    db:
+        image: mariadb:11.5.2
+        environment:
+            MYSQL_ROOT_PASSWORD: 'password'
+            MYSQL_DATABASE: 'real-time-notifications'
+        ports:
+            - 3306:3306
