@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
         new Post(),
         new Patch(),
     ],
-    messenger: true
+    mercure: ['private' => true]
 )]
 #[ORM\Entity(repositoryClass: PuppyRepository::class)]
 class Puppy

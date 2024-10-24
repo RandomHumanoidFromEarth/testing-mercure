@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
     <script>
-        const eventSource = new EventSource("{{ mercure('*')|escape('js') }}");
+        const eventSource = new EventSource("{{ mercure('*', { subscribe: '*' })|escape('js') }}", {
+            withCredentials: true,
+        });
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
-            console.log(JSON.parse(event.data));
+            console.dir(event);
             alert(event.data);
         }
     </script>
