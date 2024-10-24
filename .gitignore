@@ -1,4 +1,6 @@
 .idea
+compose.override.yaml
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

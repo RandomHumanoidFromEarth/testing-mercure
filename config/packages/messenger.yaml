@@ -1,0 +1,8 @@
+framework:
+    messenger:
+
+        transports:
+            # notifications: '%env(MESSENGER_NOTIFICATIONS_DSN)%'
+
+        routing:
+            # App\Entity\Puppy: notifications
