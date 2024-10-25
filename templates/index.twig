@@ -1,13 +1,42 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
     <script>
-        const eventSource = new EventSource("{{ mercure('*', { subscribe: '*' })|escape('js') }}", {
+        const eventSource = new EventSource("{{ mercure(topic, { subscribe: topic })|escape('js') }}", {
             withCredentials: true,
         });
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
-            console.dir(event);
-            alert(event.data);
+            const puppy = JSON.parse(event.data);
+            console.log(puppy);
+            alert(`Notification: ${puppy.name} is a ${puppy.breed}.`)
         }
     </script>
+{% endblock %}
+{% block body %}
+    <p><strong>subscribed to: "{{ topic }}"</strong></p>
+    <table style="min-width: 500px;">
+        <tr style="text-align: left">
+            <th>Owner</th>
+            <th>Puppy</th>
+            <th>IRI</th>
+            <th>Action</th>
+        </tr>
+        {% for owner in owners %}
+            <tr>
+                <td>{{ owner.name }}</td>
+                <td></td>
+                <td></td>
+                <td><a href="{{ path('index') }}?owner={{ owner.name }}">select</a></td>
+            </tr>
+            {% for puppy in owner.puppies %}
+                <tr>
+                    <td></td>
+                    <td>{{ puppy.name }}</td>
+                    <td>{{ owner.name }}/puppies/{{ puppy.name }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+
 {% endblock %}

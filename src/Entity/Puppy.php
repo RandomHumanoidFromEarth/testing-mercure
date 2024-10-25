@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Post;
 use App\Repository\PuppyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ApiResource(
     operations: [
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
         new Post(),
         new Patch(),
     ],
-    mercure: ['private' => true]
+    mercure: 'object.getMercureOptions()',
 )]
 #[ORM\Entity(repositoryClass: PuppyRepository::class)]
 class Puppy
@@ -36,6 +37,10 @@ class Puppy
 
     #[ORM\Column(length: 255)]
     private ?string $breed = null;
+
+    #[ORM\ManyToOne(inversedBy: 'puppies')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Owner $owner = null;
 
     public function getId(): ?int
     {
@@ -76,5 +81,32 @@ class Puppy
         $this->breed = $breed;
 
         return $this;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): static
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /** @return array<string, bool|array<int, string>> */
+    #[Ignore]
+    public function getMercureOptions(): array
+    {
+        return [
+            'private' => true,
+            'topics' => [
+                'puppies/*',
+                "puppies/{$this->getName()}",
+                "{$this->getOwner()->getName()}/puppies/*",
+                "{$this->getOwner()->getName()}/puppies/{$this->getName()}",
+            ],
+        ];
     }
 }

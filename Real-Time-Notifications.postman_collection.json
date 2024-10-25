@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "1f3c4274-2fd2-49ad-a475-6b138ef4137a",
+		"name": "Real-Time-Notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30884294"
+	},
+	"item": [
+		{
+			"name": "Puppy",
+			"item": [
+				{
+					"name": "GetCollection",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "XDEBUG_SESSION=PHPSTORM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/puppies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puppies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "XDEBUG_SESSION=PHPSTORM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"m-dog\",\n  \"birthDate\": \"2024-10-24\",\n  \"breed\": \"fancy-dog\",\n  \"owner\": \"/api/owners/1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/puppies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puppies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "XDEBUG_SESSION=PHPSTORM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tufu\",\n  \"breed\": \"deadly-breed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/puppies/10",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puppies",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Owner",
+			"item": [
+				{
+					"name": "GetCollection",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "XDEBUG_SESSION=PHPSTORM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/owners",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "XDEBUG_SESSION=PHPSTORM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tylor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/owners",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
